@@ -66,7 +66,7 @@ cliente consegue ver quais os profissionais estão com horários em aberto
 ![image](https://github.com/user-attachments/assets/eec88f3d-8917-4db9-bb26-3d5987d83315)
 
 **Ver Agendamentos e detalhes do agendamento** -
-Cliente ver seus agendamentos e ao clicar em detalhes ver o detalhamento do agendamento
+Cliente vê seus agendamentos e ao clicar em detalhes vê o detalhamento do agendamento
 ![image](https://github.com/user-attachments/assets/a556cae6-69b4-4a50-9d57-2767dfcfbf57)
 
 **Detalhe do agendamento**
