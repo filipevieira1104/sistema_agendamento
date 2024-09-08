@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Agendamentos Barbeiro{% endblock %}
+
+{% block 'body' %}
+    <main class="w-100">
+        <div class="container">
+            {% if messages %}
+            <br>
+                {% for message in messages %}
+                    <div class="alert {{message.tags}} d-flex justify-content-between align-items-center">
+                        <span>{{message}}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <h1 style="color: #F29C50; text-align: center;" class="pt-3">Filtrar Agendamentos</h1>
+            <hr>
+            <div class="row">
+                <div class="col-4 col-md-4 col-lg-4">
+                    <input type="text" name="especialidade" id="" class="form-control" placeholder="Tipo de serviço">
+                </div>
+                <div class="col-4 col-md-4 col-lg-4">
+                    <input type="date" name="data" id="" class="form-control" placeholder="Data do agendamento">
+                </div>
+                <div class="col-4 col-md-4 col-lg-4">
+                    <button type="submit" class="btn btn-barber">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+                            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
+                          </svg>
+                          Filtrar
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <h1 style="color: #F29C50; text-align: center;" class="pt-3">Hoje</h1>
+                <hr>
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <th>Cliente</th>
+                                <th>Data</th>
+                                <th>Detalhes</th>
+                            </thead>
+                            <tbody class="font-tabela">
+                                {% for i in agendamentos_hoje %}
+                                <tr>
+                                    <td>{{ i.cliente }}</td>
+                                    <td>{{ i.datas_abertas.data }}</td>
+                                    <td><a href="{% url 'agendamento_area_barbeiro' i.id %}">Ver Detalhes</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h1 style="color: #F29C50; text-align: center;" class="pt-3">Próximos atendimentos</h1>
+                <hr>
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <th>Cliente</th>
+                                <th>Data</th>
+                                <th>Detalhes</th>
+                            </thead>
+                            <tbody class="font-tabela">
+                                {% for i in agendamentos_restantes %}
+                                <tr>
+                                    <td>{{ i.cliente }}</td>
+                                    <td>{{ i.datas_abertas.data }}</td>
+                                    <td><a href="{% url 'agendamento_area_barbeiro' i.id %}">Ver Detalhes</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Search{% endblock %}
+
+{% block 'body' %}
+    <main class="w-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-10">
+                    {% if messages %}
+                    <br>
+                        {% for message in messages %}
+                            <div class="alert {{message.tags}} d-flex justify-content-between align-items-center">
+                                <span>{{message}}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <p class="form-barbeiro pt-3">Olá, {{ request.user.username }}</p>
+                    <form action="{% url 'search' %}" method="GET">
+                        <input type="text" class="form-control" placeholder="Busque por profissionais" name="barbeiro">
+                        <div class="especialidades pt-3">
+                            {% for especialidade in especialidades %}
+                                <input type="checkbox" name="especialidades" value="{{especialidade.id}}">
+                                <span class="badge form-barbeiro">
+                                    {{ especialidade.especialidade }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                        <br>
+                        <input type="submit" value="filtrar" class="btn btn-barber">
+                    </form>
+                    <hr>
+                    <div class="list-barbeiros">
+                        <div class="row">
+                            {% for barbeiro in barbeiros %}
+                            <div class="col-12 col-md-6 p-col-2 mb-4 d-flex justify-content-center"> <!-- Cada card ocupa 6 colunas em telas médias e acima -->
+                                <div class="card-barbeiros" id="card-{{ barbeiro.id }}">
+                                    <div class="row">
+                                        <div class="col-md-3"><img src="{{ barbeiro.foto.url }}" class="foto-perfil-card" alt=""></div>
+                                        <div class="col-md d-flex align-items-center justify-content-center">
+                                            <p class="font-card ps-md-2">{{ barbeiro.nome }} <i class="bi bi-patch-check-fill icon-main"></i></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md d-flex align-items-center justify-content-center">
+                                        <p class="ps-md-2 pt-3">{{ barbeiro.descricao }}</p>
+                                    </div>
+                                    <p class="font-card"><i class="bi bi-map icon-main"></i>&nbsp&nbsp{{ barbeiro.rua }}, N°: {{ barbeiro.numero }}.</p>
+                                    <p class="font-card"><i class="bi bi-calendar2-week icon-main"></i>&nbsp&nbspDatas disponíveis:</p>
+                                        <form method="POST" action="{% url 'escolher_horario' id_dados_barbeiro=barbeiro.id %}">{% csrf_token %}
+                                            <select class="form-select form-select-sm" aria-label="Small select example" name="escolher_horario">
+                                                {% if barbeiro.proximas_datas_disponiveis.exists %}
+                                                    <option selected>Escolha um horário</option>
+                                                    {% for data in barbeiro.proximas_datas_disponiveis %}
+                                                        <option value="{{ data.id }}">{{ data.data|date:"d/m/Y" }} - {{ data.data|time:"H:i" }}</option>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <option selected>Não há horários disponíveis</option>
+                                                {% endif %}
+                                            </select>                                          
+                                    
+                                            <p class="mt-2">Escolha o tipo de serviço:</p>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    {% for i in servicos %}
+                                                    <div class="col-6 mb-2 d-flex align-items-center">
+                                                        <input type="checkbox" name="servicos" value="{{ i.id }}"
+                                                        data-valor="{{ i.valores.valores }}"
+                                                        onchange="calculateTotal('{{ barbeiro.id }}')">
+                                                        <span class="badge servicos-modal ms-2">{{ i.servicos }}</span>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <p>Total: R$ <span id="total-{{ barbeiro.id }}">0.00</span></p>
+                                                <input type="hidden" name="total" id="total-hidden-{{ barbeiro.id }}" value="0.00">
+                                            </div>
+                                       
+                                            <div class="d-grid mt-3">
+                                                <button type="submit" class="btn btn-card">Agendar</button>
+                                            </div>
+                                        </form>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-2">
+                    <p class="form-barbeiro pt-3">Lembretes</p>
+                    {% if agendamentos_proximos %}
+                        {% for agendamento in agendamentos_proximos %}
+                            <p class="bg-main-lembrete p-3">
+                                <span class="p-bold form-barbeiro">
+                                    <i class="bi bi-exclamation-triangle-fill icon-differential me-2"></i>
+                                    Consulta com {{ agendamento.datas_abertas.user }} em {{ agendamento.datas_abertas.data|timeuntil }}.
+                                </span>
+                            </p>
+                        {% endfor %}
+                    {% else %}
+                        <p class="bg-main-lembrete p-3">
+                            <span class="p-bold form-barbeiro">
+                                Nenhum agendamento para a próxima hora.
+                            </span>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/total.js' %}"></script>
+    </main>
+{% endblock %}

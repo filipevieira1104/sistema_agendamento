@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}abrir horário{% endblock %}
+
+{% block 'body' %}
+    <main class="w-100 abrir_horario">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <img src="{{ dados_barbeiro.foto.url }}" alt="" class="foto-perfil p-3">
+                    <label for="" class="form-barbeiro">Olá, <span>{{ request.user.username }}</span></label>
+                    {% if messages %}
+                    <br>
+                        {% for message in messages %}
+                            <div class="alert {{message.tags}} d-flex justify-content-between align-items-center">
+                                <span>{{message}}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <i class="bi bi-calendar-date"></i><p class="p-3 form-barbeiro" style="font-size: 25px; text-align: center;">Abrir horários para atendimentos</p>
+                    <hr>
+                    <form action="{% url 'abrir_horario' %}" method="POST">{% csrf_token %}
+                        <label for="" class="form-barbeiro">Escolher data:</label>
+                        <input type="datetime-local" name="data" class="form-control mb-3">
+                        <input type="submit" value="Salvar" class="btn btn-barber mb-3">
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <p class="form-barbeiro p-3" style="text-align: center; font-size: 25px;">Seus horários disponíveis</p>
+                    <hr>
+                    {% for i in datas_abertas %}
+                        <ul class="list-group">
+                            <li class="form-barbeiro">{{ i.data }}</li>
+                        </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

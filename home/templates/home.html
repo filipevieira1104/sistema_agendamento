@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'title' %}Home{% endblock %}
+
+{% block 'body' %}
+    <!--Banner-->
+    <main class="w-100 min-vh-100 background-banner d-flex align-items-center">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-3">
+                    {% if messages %}
+                    <br>
+                        {% for message in messages %}
+                            <div class="alert {{message.tags}} d-flex justify-content-between align-items-center">
+                                <span>{{message}}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="card card-banner ms-5" style="border: 1px solid #F29C50;">
+                        <div class="card-body">
+                          <h5 class="card-title card-title-banner fw-bold">Bem vindo!</h5>
+                          <p class="card-text card-text-banner">Descubra a arte da barbearia: estilo, elegância e tradição em corte.</p>
+                          {% if request.user.is_authenticated %}
+                            <a href="{% url 'search' %}" class="btn btn-outline">Agende seu horário <i class="bi bi-arrow-right"></i></a>
+                          {% else %}
+                            <a href="#" class="btn btn-outline" onclick="alert('Cadastre-se ou entre no sistema para agendar um horário.');">Agende seu horário <i class="bi bi-arrow-right"></i></a>
+                          {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--End banner-->
+
+    <!--Section Quem-somos-->
+    <section class="w-100 quem-somos" id="historia">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-6 bg-main d-flex flex-column align-items-center justify-content-center">
+                    <div class="text-container">
+                        <img src="{% static 'img/icon-tesoura.png' %}" alt="" class="mb-3 mx-auto d-block">
+                        <h1 class="decor">Nossa História</h1>
+                        <h3 class="decor1">
+                            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                
+                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-6 img-quem">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End section-->
+
+    <!--Carrousel-->
+    <section id="corrousel">
+        <div class="container-fluid">
+            <div class="row galery-color">
+                <div class="col-12 col-md-12 col-lg-12 d-flex align-items-center justify-content-center p-2" style="border-top: 1px solid #F29C50;">
+                    <img src="{% static 'img/icon-bigode.png' %}" alt="">
+                </div>
+                <h1 class="text-center fw-bold">Nossos serviços</h1>
+                <div class="parallax bg-image d-flex align-items-center justify-content-center">
+                    <div class="container content text-center" style="border: 1px solid transparent; box-shadow: 0 4px 8px rgba(242, 156, 80, 0.5);">
+                        {% for i in servico %}
+                        <div class="service-price">
+                            <h1>{{ i.servicos }}</h1>
+                            <h1>R$ {{ i.valores }}</h1>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End carrousel-->
+
+    <!--Galeria de fotos-->
+    <section class="w-100 galeria" id="galeria">
+        <div class="container-fluid">
+            <div class="row galery-color">
+                <div class="col-12 col-md-12 d-flex align-items-center justify-content-center p-2">
+                    <img src="{% static 'img/icon-navalha.png' %}" alt="">
+                </div>
+                <h1 class="text-center fw-bold">Galeria de fotos</h1>
+            </div>
+
+            <div class="row img-size">
+                <div class="col-12 col-md-12 col-lg-4 img-1"></div>
+                <div class="col-12 col-md-12 col-lg-4 img-2"></div>
+                <div class="col-12 col-md-12 col-lg-4 img-3"></div>
+            </div>
+            <div class="row img-size">
+                <div class="col-12 col-md-12 col-lg-4 img-4"></div>
+                <div class="col-12 col-md-12 col-lg-4 img-5"></div>
+                <div class="col-12 col-md-12 col-lg-4 img-6"></div>
+            </div>
+        </div>
+    </section>
+    <!--End Galaria-->
+
+    <!--Rodapé-->
+    <footer class="w-100">
+        <section class="section-footer1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-4 p-3">
+                        <p class="rodape"><i class="bi bi-globe2"></i> Siga nas redes sociais</p>
+                        <div class="d-flex justify-content-between p-2 sociais">
+                            <div>
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                            </div>
+                            <div>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                            </div>
+                            <div>
+                                <a href="#"><i class="bi bi-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-4 p-3">
+                        <p class="rodape"><i class="bi bi-geo-alt"></i> Nosso Endereço</p>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14612.640440470157!2d-46.6222736!3d-23.705975749999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1724008805102!5m2!1spt-BR!2sbr" width="400" height="455" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-4 p-3">
+                        <p class="rodape"><i class="bi bi-clock"></i> Horário de funcionamento</p>
+                        <div class="rodape">
+                            <p>De Seg á Sab</p>
+                            <p>10:00 ás 19:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-footer2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12 pt-2">
+                        <p class="rodape1">&copy; 2024 Developed by Filipe Vieira. Todos os direitos reservados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <!--End rodapé-->
+{% endblock %}

@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static  'css/style.css' %}">
+    <title>{% block 'title' %}{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" style="width: 50px;" alt=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if request.user.is_authenticated %}
+                            Olá {{ request.user.username }}
+                        {% else %}
+                            Realize seu login
+                        {% endif %}        
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% if request.user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'sair' %}">Sair</a></li>
+                            {% if request.user.is_barbeiro %}
+                                <!-- Menu para barbeiros -->
+                                <li><a class="dropdown-item" href="{% url 'abrir_horario' %}">Abrir horário</a></li>
+                                <li><a class="dropdown-item" href="{% url 'agendamentos_barbeiro' %}">Meus agendamentos</a></li>
+                            {% else %}
+                                <!-- Menu para clientes -->
+                                <li><a class="dropdown-item" href="{% url 'search' %}">Agendar horário</a></li>
+                                <li><a class="dropdown-item" href="{% url 'meus_agendamentos' %}">Meus agendamentos</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLogin" href="#">Entrar</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+            {% if request.path == '/' %}
+                <ul class="navbar-nav ms-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#historia">Nossa História</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#galeria">Galeria de fotos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#corrousel">Nossos serviços</a>
+                    </li>
+                    <a href="#" class="scroll-to-top" id="scrollToTopBtn">&#8679;</a>
+                </ul>
+            {% endif %}  
+          </div>
+        </div>
+    </nav>
+    <!-- Modal Login -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content style-modal">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Realize seu login</h1>
+                    <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'login' %}" method="POST" class="mb-5">{% csrf_token %}
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="nome" id="floatingInput" placeholder="Digite seu nome">
+                            <label for="floatingInput">Digite seu nome</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" name="senha" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Digite sua senha</label>
+                        </div>
+                        <button type="submit" class="btn btn-barber mt-3">Entrar</button>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalCadastro" data-bs-dismiss="modal" class="btn btn-link form-barbeiro mt-3">Não possui cadastro?</a>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-barber" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal Cadastro-->
+    <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content style-modal">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel1">Cadastre-se</h1>
+                    <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'cadastro' %}" method="POST" class="mb-5">{% csrf_token %}
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="nome" id="floatingInputCadastro" placeholder="Digite seu nome">
+                            <label for="floatingInputCadastro">Digite seu nome</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" name="phone" id="floatingInputPhoneCadastro" placeholder="Digite seu Whatsapp">
+                            <label for="floatingInputPhoneCadastro">Digite seu Whatsapp</label>
+                        </div>    
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" name="email" id="floatingEmailCadastro" placeholder="name@example.com">
+                            <label for="floatingEmailCadastro">Digite seu endereço de e-mail</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" name="senha" id="floatingPasswordCadastro" placeholder="Password">
+                            <label for="floatingPasswordCadastro">Digite sua senha</label>
+                        </div>
+                        <button type="submit" class="btn btn-barber mt-3">Cadastrar</button>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-dismiss="modal" class="btn btn-link form-barbeiro mt-3">Já possui cadastro?</a>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-barber" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    {% block 'body' %}{% endblock %}
+    <script src="{% static 'js/scroll_top.js' %}"></script>
+</body>
+</html>

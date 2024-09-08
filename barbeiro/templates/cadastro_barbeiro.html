@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Cadastro barbeiro{% endblock %}
+
+{% block 'body' %}
+    <main class="w-100 cadastro-barber">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 d-flex align-items-center justify-content-center">
+                    <img src="{% static 'img/icon-navalha.png' %}" alt="" style="height: 90px;" class="p-3">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <p class="form-barbeiro">Olá, <span>{{ request.user }}</span></p>
+                    <p class="form-barbeiro">Vamos realizar o cadastro do barbeiro</p>
+
+                    <form action="{% url 'cadastro_barbeiro' %}" method="POST" enctype="multipart/form-data" class="mb-5">{% csrf_token %}
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="nome" id="floatingInput" placeholder="Digite seu nome">
+                            <label for="floatingInput">Digite seu nome</label>
+                        </div>
+                        <label for="" class="form-barbeiro">Foto do perfil:</label>
+                        <input type="file" name="foto" class="form-control mb-3">
+                        <label for="" class="form-barbeiro">Especialidade:</label>
+                        <select name="especialidade" class="form-select mb-3" id="">
+                            {% for i in especialidades %}
+                                <option value="{{ i.id }}">{{ i.especialidade }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="" class="form-barbeiro">Descrição:</label>
+                        <textarea name="descricao" class="form-control mb-3" id=""></textarea>
+                        <p class="form-barbeiro">Endereço do estabelecimento:</p>
+                        <div class="row">
+                            <div class="form-floating col">
+                                <input type="text" class="form-control" name="rua" id="floatingInput" placeholder="Rua">
+                                <label for="floatingInput">Rua</label>
+                            </div>
+                            <div class="form-floating col mb-3">
+                                <input type="text" class="form-control" name="numero" id="floatingInput" placeholder="Numero">
+                                <label for="floatingInput">Número</label>
+                            </div>
+                            <div class="form-floating col mb-3">
+                                <input type="text" class="form-control" name="cep" id="floatingInput" placeholder="CEP">
+                                <label for="floatingInput">CEP</label>
+                            </div>
+                        </div>    
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="bairro" id="floatingInput" placeholder="Bairro">
+                            <label for="floatingInput">Bairro</label>
+                        </div>    
+                        
+                        <button type="submit" class="btn btn-barber mt-3">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

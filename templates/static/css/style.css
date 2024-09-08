@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css2?family=Ruda:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Matemasie&display=swap');
+
+@media (max-width: 768px) {
+    .text-container {
+        max-width: 90%;
+    }
+
+    .decor1 {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+}
+
+@media (min-width: 769px) {
+    .decor1 {
+        font-size: 1.25rem;
+        line-height: 1.75;
+    }
+}
+
+body {
+    background-color: #401C19;
+}
+
+a{
+    color: #F29C50;
+}
+
+hr {
+    color: #F29C50;
+}
+
+.bg-main {
+    height: 100vh;
+}
+
+.cor-fundo {
+    background-color: gold;
+    border: 1px solid transparent;
+    box-shadow: 10px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.personalizar {
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    font-family: 'Goboto';
+}
+
+.borda {
+    border: 1px solid transparent;
+    border-radius: 30px 0 30px 0;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+.background-banner {
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/banner3.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.navbar {
+    font-size: 1.5rem;
+    font-family: 'Ruda', sans-serif;
+    font-weight: 400;
+    color: black;
+    
+}
+
+.card-banner {
+    background-color: #401C19;
+    border: 1px solid transparent;
+    border-radius: 30px 0 30px 0;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+.card-title-banner {
+    font-size: 2rem;
+    font-family: 'Ruda', sans-serif;
+    font-weight: 500;
+    color: #F29C50;
+}
+
+.card-text-banner {
+    font-size: 2.5rem;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 600;
+    color: #F29C50;
+}
+
+.font-1 {
+    font-family: 'Aruda', sans-serif;
+}
+
+.font-2 {
+  font-family: "Matemasie", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.btn-outline {
+    color: #F29C50;
+    border: 1px solid #F29C50;
+    border-radius: 10px;
+    font-family: "Ruda", sans-serif;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-outline:hover {
+    box-shadow: 0px 0px 10px 8px #F29C50,
+    inset 0px 0px 10px 2px #F29C50;
+
+    transform: scale(1.05);
+    color: #F29C50;
+}
+
+.nav-link:hover {
+    color: #FFF;
+    background-color: #8C5042;
+}
+
+.quem-somos {
+    background-color: #401C19;
+}
+
+.img-quem {
+    background-image: url('../img/quem-somos.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.decor {
+    text-align: center;
+    margin-top: 5%;
+    color: #F29C50;
+    font-family: "Ruda", sans-serif;
+}
+
+.decor1 {
+    text-align: justify;
+    margin-top: 10%;
+    color: #F29C50;
+}
+
+.text-container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+
+.galery-color {
+    background-color: #401C19;
+    color: #F29C50;
+    font-family: "Ruda", sans-serif;
+    padding-top: 5px;
+}
+
+.img-size {
+    height: 50vh;
+}
+
+/* Estilo base para cada imagem */
+.img-1, .img-2, .img-3, .img-4, .img-5, .img-6 {
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease; /* Suaviza o efeito de zoom */
+    cursor: zoom-in;
+}
+
+/* Zoom ao passar o mouse sobre as imagens */
+.img-1:hover, .img-2:hover, .img-3:hover, .img-4:hover, .img-5:hover, .img-6:hover {
+    transform: scale(1.2); /* Aumenta a escala da imagem */
+    cursor: zoom-in;
+}
+
+.img-1 {
+    background-image: url('../img/img-1.jpg');
+    
+}
+
+.img-2 {
+    background-image: url('../img/img-cadastro.png');
+    
+}
+
+.img-3 {
+    background-image: url('../img/img-3.jpg');
+    
+}
+
+.img-4 {
+    background-image: url('../img/img-4.jpg');
+    
+}
+
+.img-5 {
+    background-image: url('../img/img-5.jpg');
+    
+}
+
+.img-6 {
+    background-image: url('../img/img-6.jpg');
+    
+}
+
+.carousel-inner img {
+    max-width: 100%;
+    height: auto; /* Mantém a proporção da imagem */
+    max-height: 850px; /* Define uma altura máxima */
+    object-fit: cover; /* Corta a imagem para caber na área */
+}
+
+.rodape {
+    text-align: center;
+    font-size: 32px;
+    font-family: "Ruda", sans-serif;
+    font-weight: 400;
+    color: #F29C50;
+}
+
+.rodape1 {
+    text-align: center;
+    font-size: 16px;
+    font-family: "Ruda", sans-serif;
+    font-weight: 400;
+    color: #401C19;
+}
+
+.section-footer1 {
+    background-color: #401C19;
+}
+
+.section-footer2 {
+    background-color: #F29C50;
+}
+
+.menu-lateral {
+    height: 100vh;
+    background-image: url('../img/cadastro_barber.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-right: 3px solid red;
+    box-shadow: #F29C50;
+}
+
+.sociais {
+    color: #F29C50;
+    font-size: 50px;
+}
+
+.galeria {
+    border-top:1px solid #F29C50;
+    border-bottom:1px solid #F29C50;
+}
+
+.form-barbeiro {
+    font-size: 20px;
+    font-family: "Ruda", sans-serif;
+    font-weight: 900;
+    color: #F29C50;
+}
+
+.cadastro-barber {
+    background-color: #401C19;
+}
+
+.btn-barber {
+    background-color: #F29C50;
+    color: #401C19;
+}
+
+.btn-barber:hover {
+    background-color: #8C5042;
+}
+
+.btn-card {
+    background-color: #401C19;
+    color: #F29C50;
+}
+
+.btn-card:hover {
+    background-color: #8C5042;
+    color: #F29C50;
+}
+
+.foto-perfil{
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+}
+
+.abrir_horario {
+    
+    background-color: #401C19;
+}
+
+.card-barbeiros{
+
+    width: 60%;
+    background-color: #F29C50;
+    border: 1px solid var(--main-color);
+    padding: 20px;
+
+}
+
+.foto-perfil-card{
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+
+}
+
+.icon-main{
+    color: #3897F0;
+}
+
+.font-card {
+    font-family: "Ruda", sans-serif;
+    font-size: 20px;
+    color: #401C19;
+}
+
+.servicos-modal {
+    font-family: "Ruda", sans-serif;
+    font-size: 16px;
+    color: #401C19;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #F29C50; /* Altere para a cor que você preferir */
+}
+
+.font-tabela {
+    font-family: "Ruda", sans-serif;
+    font-weight: 600;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    width: 40px;
+    height: 40px;
+    background-color: #401C19;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.scroll-to-top:hover {
+    background-color: #F29C50;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: #8C5042;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: #F29C50;
+}
+
+/* Estilo Parallax */
+.parallax {
+    position: relative;
+    min-height: 820px; /* Pode ajustar para o tamanho desejado */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image {
+    background-image: url('../img/img-parallax.jpg');
+}
+
+/* Overlay utilizando pseudo-elemento */
+.parallax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 50% de opacidade */
+    z-index: 1;
+}
+
+.parallax .content {
+    position: relative;
+    z-index: 2;
+    color: #F29C50; /* Ajustar a cor do texto para ser visível sobre o overlay */
+    text-align: center;
+    padding: 20px;
+}
+
+.service-price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.service-price::before {
+    content: '';
+    flex-grow: 1;
+    border-bottom: 1px dotted #F29C50;
+    margin: 0 10px;
+    order: 1;
+}
+
+.service-price h1:first-child {
+    order: 0; /* Garantir que o nome do serviço venha antes */
+}
+
+.service-price h1:last-child {
+    order: 2; /* Garantir que o preço venha depois */
+    flex-shrink: 0; /* Impedir que o preço seja encolhido */
+    margin-left: 10px;
+}
+
+.style-modal {
+    background-color: #401C19;
+    color: #F29C50;
+}
+
+.btn-close-custom {
+    background-color: transparent; /* Torna o fundo transparente */
+    border: none; /* Remove a borda padrão */
+    background-image: none; /* Remove a imagem padrão do Bootstrap */
+    position: relative;
+    width: 1em;
+    height: 1em;
+}
+
+.btn-close-custom::before {
+    content: '\00d7'; /* Código Unicode para o "X" */
+    font-size: 1.8em; /* Tamanho do X */
+    color: #F29C50; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
