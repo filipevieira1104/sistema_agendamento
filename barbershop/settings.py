@@ -23,6 +23,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,4 +132,26 @@ MESSAGE_TAGS = {
     constants.SUCCESS: 'alert-success',
     constants.INFO: 'alert-info',
     constants.WARNING: 'alert-warning',
+}
+
+JAZZMIN_SETTINGS = {
+    # Personalizar o título da aba do navegador (o que aparece na aba do browser)
+    "site_title": "Painel de Controle",
+
+    # Personalizar o cabeçalho (o nome que aparece no topo do painel de administração)
+    "site_header": "Barbearia",
+
+    # Personalizar a marca do site (o nome que aparece na barra lateral e topo do site)
+    "site_brand": "Admin Barbearia",
+
+    # Opcional: mensagem de boas-vindas no dashboard
+    "welcome_sign": "Bem-vindo ao Painel de Administração",
+
+    # Opcional: texto do botão de logout
+    "logout_message": "Até logo!",
+
+    # Adicionar o logo no sidebar
+    "site_logo": "img/logo.png",  # Caminho para a imagem dentro da pasta static
+
+    "site_logo_classes": "img-fluid",
 }
