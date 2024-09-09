@@ -22,7 +22,7 @@ Este é um sistema de agendamento de barbearia desenvolvido em Django, que permi
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seuusuario/sistema-agendamento-barbearia.git
+   git clone https://github.com/filipevieira1104/sistema_agendamento.git
 
 2. Crie um ambiente virtual:
    ```bash
